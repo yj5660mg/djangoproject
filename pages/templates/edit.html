@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}SAFE | Edit Movie{% endblock %}
+
+{% block content %}
+	{% if MOVitem %}
+		
+	<form class="form-inline my-2 my-lg-0" method="POST">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="{{ MOVitem.MOVitem }}" value="{{ MOVitem.MOVitem }}" aria-label="Search" name="MOVitem">
+
+      <input type="hidden" value="{{ MOVitem.watched }}" name="watched">
+
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Edit Movie</button>
+    </form>
+
+
+	{% endif %}
+	
+{% endblock %}

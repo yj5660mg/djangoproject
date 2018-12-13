@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}SAFE | Review{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-warning alert-dismissable" role="alert">
+			<button class="close" data-dismiss="alert">
+				<small><sup>x</sup></small>
+			</button>
+			{{ message }}
+		</div>
+	{% endfor %}	
+{% endif %}
+
+<h1>Movies List: Already Seen/Not See - Add/Delete</h1>
+<br/>
+<b>Share:</b>
+	{% if all_MOVitem %}
+	<table class="table table-dark">
+	 	{% for movies in all_MOVitem %}
+			{% if movies.watched %}
+				<tr class="table-dark">
+					<td class="striker"><a href="{% url 'edit' movies.id %}"><button type="button" class="btn btn-secondary btn-lg btn-block">{{ movies.MOVitem }}</button></a></td>
+					<td><center><a href="{% url 'notseen' movies.id %}"><button type="button" class="btn btn-light btn-lg btn-block">Already Seen</button></a></center></td>
+					<td><center><a href="{% url 'delete' movies.id %}"><button type="button" class="btn btn-light">Delete</button></a></center></td>
+				</tr>
+			{% else %}
+				<tr>
+					<td><a href="{% url 'edit' movies.id %}"><button type="button" class="btn btn-secondary btn-lg btn-block">{{ movies.MOVitem }}</button></a></td>
+					<td><center><a href="{% url 'seen' movies.id %}"><button type="button" class="btn btn-danger btn-lg btn-block">Not Seen</button></a></center></td>
+					<td><center><a href="{% url 'delete' movies.id %}"><button type="button" class="btn btn-dark">Delete</button></a></center></td>
+				</tr>
+			{% endif %}	
+		{% endfor %}
+
+		<a href="https://www.facebook.com/sharer/sharer.php?u={{ refer.url }}" target="_blank"><b><u>Facebook</u></b>,
+		
+
+		<a href="https://twitter.com/home?status=Share%20The%20Movies%20You%27ve%20Seen%20or%20Not%20Seen%20With%20Your%20Friends%20%26%20Family%20On%20Your%20Twitter%20Account%20and%20Subscribe{{ refer.url }}" target="_blank">
+		<b><u>Twitter</u></b>,
+		</a>
+
+		<a href='https://plus.google.com/share?url={{ refer.url }}' target="_blank"><b><u>Share on Google+</u></b></a>,
+
+		<a href="https://www.linkedin.com/shareArticle?mini=false&url={{ ref_url }}&title=Share%20The%20Movies%20You%27ve%20Seen%20or%20Not%20Seen%20With%20Your%20Friends%20%26%20Family%20On%20Your%20Twitter%20Account%20and%20Subscribe&summary=Share%20The%20Movies%20You%27ve%20Seen%20or%20Not%20Seen%20With%20Your%20Friends%20%26%20Family%20On%20Your%20Twitter%20Account%20and%20Subscribe&source={{ refer.url }}" target="_blank"><b><u>Linkedin</u></b></a>,
+
+		<a href="http://www.reddit.com/submit?url={{ refer_url }}&title=Share%20The%20Movies%20You%27ve%20Seen%20or%20Not%20Seen%20With%20Your%20Friends%20%26%20Family%20On%20Your%20Reddit%20Account%20and%20Subscribe!!={{ refer.url }}" target="_blank"><b><u>Reddit</u></b></a>
+	</table>
+	{% endif %}
+
+{% endblock %}

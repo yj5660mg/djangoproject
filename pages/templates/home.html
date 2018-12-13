@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}SAFE | Home{% endblock %}
+
+{% block content %}
+	
+	
+<div class="card" style="width: 50rem;">
+  <img class="card-img-top" src="{% static 'images/SAFElogo.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">WARNING: <br>Movies you share are only to be used on this application. Read below the button, it has copy rights written all over! Don't be bogus!</h5>
+    <p class="card-text">Click below to check off that you have seen the movie or not, and share with your friends.</p>
+    <a href="{% url 'contact' %} " class="btn btn-danger">Movies List</a>
+  </div>
+</div>
+
+{% endblock %}
